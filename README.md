@@ -7,3 +7,6 @@ This repository is used in the course [Build Cloud Apps in Go](https://www.golan
 - `go doc net/http.Server`
 - Why need timeout values for `http.Server`?
 - Why we need graceful shutdown?
+- How load-balancer handles TLS cert?
+- How load-balancer checks health endpoint?
+- How come 2 package names inside one folder? `handlers` vs `handlers_test`
