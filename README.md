@@ -11,3 +11,8 @@ This repository is used in the course [Build Cloud Apps in Go](https://www.golan
 - How load-balancer checks health endpoint?
 - How come 2 package names inside one folder? `handlers` vs `handlers_test`
 - Why structured logging instead of fmt log?
+- Why putting binary file inside container?
+- What is multi-state build and why we need it?
+    - What
+    - Why? Include binary solely, Caching
+- 
