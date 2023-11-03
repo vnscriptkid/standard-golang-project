@@ -1,6 +1,11 @@
 github.com/davecgh/go-spew v1.1.1 h1:vj9j/u1bqnvCEfJOwUhtlOARqs3+rkHYY13jYWTU97c=
 github.com/go-chi/chi/v5 v5.0.10 h1:rLz5avzKpjqxrYwXNfmjkrYYXOyLJd37pz53UFHC6vk=
 github.com/go-chi/chi/v5 v5.0.10/go.mod h1:DslCQbL2OYiznFReuXYUmQ2hGd1aDpCnlMNITLSKoi8=
+github.com/maragudk/gomponents v0.20.0/go.mod h1:nHkNnZL6ODgMBeJhrZjkMHVvNdoYsfmpKB2/hjdQ0Hg=
+github.com/maragudk/gomponents v0.20.1 h1:TeJY1fXEcfUvzmvjeUgxol42dvkYMggK1c0V67crWWs=
+github.com/maragudk/gomponents v0.20.1/go.mod h1:nHkNnZL6ODgMBeJhrZjkMHVvNdoYsfmpKB2/hjdQ0Hg=
+github.com/maragudk/gomponents-heroicons v0.5.0 h1:R1hSNSAK4lynFHZA3ycHkIfBugEfNI0uz43WRa5+Lqo=
+github.com/maragudk/gomponents-heroicons v0.5.0/go.mod h1:BdJ7d+F4fa2wDNO6ZQ1eeVHv6GumZzek2xEBI6FIsDM=
 github.com/matryer/is v1.4.1 h1:55ehd8zaGABKLXQUe2awZ99BD/PTc2ls+KV/dXphgEQ=
 github.com/matryer/is v1.4.1/go.mod h1:8I/i5uYgLzgsgEloJE1U6xx5HkBQpAZvepWuujKwMRU=
 github.com/pmezard/go-difflib v1.0.0 h1:4DBwDE0NGyQoBHbLQYPwSUPoCMWR5BEzIk/f1lZbAQM=

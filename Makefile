@@ -26,3 +26,11 @@ deploy:
 url:
 	aws lightsail get-container-services --service-name canvas | jq -r '.containerServices[0].url'
 
+images:
+	aws lightsail get-container-images --service-name canvas
+
+depl-state:
+	aws lightsail get-container-services --service-name canvas | jq '.containerServices[].currentDeployment.state'
+
+svc-status:
+	aws lightsail get-container-services --service-name canvas | jq '.containerServices[].state'
