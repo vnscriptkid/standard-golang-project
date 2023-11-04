@@ -34,3 +34,25 @@ depl-state:
 
 svc-status:
 	aws lightsail get-container-services --service-name canvas | jq '.containerServices[].state'
+
+pg:
+	docker exec -it spg psql -U canvas
+
+up:
+	docker compose up -d
+
+up_build:
+	docker compose up -d --build
+
+down:
+	docker compose down --remove-orphans --volumes
+
+migrate-up:
+	go run ./cmd/migrate up
+
+migrate-down:
+	go run ./cmd/migrate down
+
+# Example: make migrate_to version=123
+migrate-to:
+	go run ./cmd/migrate to $(version)
