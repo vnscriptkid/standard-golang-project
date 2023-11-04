@@ -15,11 +15,13 @@ import (
 //	defer cleanup()
 func CreateServer() func() {
 	db, cleanupDB := CreateDatabase()
+	queue, cleanupQueue := CreateQueue()
 
 	s := server.New(server.Options{
 		Host:     "localhost",
 		Port:     8081,
 		Database: db,
+		Queue:    queue,
 	})
 
 	go func() {
@@ -41,6 +43,7 @@ func CreateServer() func() {
 			panic(err)
 		}
 		cleanupDB()
+		cleanupQueue()
 	}
 }
 

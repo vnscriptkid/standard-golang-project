@@ -56,3 +56,9 @@ migrate-down:
 # Example: make migrate_to version=123
 migrate-to:
 	go run ./cmd/migrate to $(version)
+
+queue-ui:
+	open http://localhost:9325
+
+home:
+	open http://localhost:8080

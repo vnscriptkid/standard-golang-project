@@ -10,6 +10,14 @@ services:
       - 5432:5432
     volumes:
       - postgres:/var/lib/postgresql/data
+  elasticmq:
+    image: softwaremill/elasticmq-native
+    container_name: smq
+    ports:
+      - 9324:9324
+      - 9325:9325
+    volumes:
+      - ./elasticmq.conf:/opt/elasticmq.conf
   postgres-test:
     image: postgres:12
     container_name: spg_test
@@ -19,5 +27,10 @@ services:
       POSTGRES_DB: template1
     ports:
       - 5433:5432
+  elasticmq-test:
+    image: softwaremill/elasticmq-native
+    container_name: smq_test
+    ports:
+      - 9326:9324
 volumes:
   postgres:

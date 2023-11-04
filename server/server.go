@@ -2,6 +2,7 @@
 package server
 
 import (
+	"canvas/messaging"
 	"canvas/storage"
 	"context"
 	"errors"
@@ -20,6 +21,7 @@ type Server struct {
 	database *storage.Database
 	Log      *zap.Logger
 	mux      chi.Router
+	queue    *messaging.Queue
 	server   *http.Server
 }
 
@@ -28,6 +30,7 @@ type Options struct {
 	Host     string
 	Log      *zap.Logger
 	Port     int
+	Queue    *messaging.Queue
 }
 
 func New(opts Options) *Server {
@@ -42,6 +45,7 @@ func New(opts Options) *Server {
 		database: opts.Database,
 		mux:      mux,
 		Log:      opts.Log,
+		queue:    opts.Queue,
 		server: &http.Server{
 			Addr:              address,
 			Handler:           mux,
