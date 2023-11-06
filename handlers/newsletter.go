@@ -2,6 +2,7 @@ package handlers
 
 import (
 	"context"
+	"fmt"
 	"net/http"
 
 	"github.com/go-chi/chi/v5"
@@ -29,6 +30,7 @@ func NewsletterSignup(mux chi.Router, s signupper, q sender) {
 
 		token, err := s.SignupForNewsletter(r.Context(), email)
 		if err != nil {
+			fmt.Println("s.SignupForNewsletter error: ", err)
 			http.Error(w, "error signing up, refresh to try again", http.StatusBadGateway)
 			return
 		}
@@ -39,6 +41,7 @@ func NewsletterSignup(mux chi.Router, s signupper, q sender) {
 			"token": token,
 		})
 		if err != nil {
+			fmt.Println("q.Send error: ", err)
 			http.Error(w, "error signing up, refresh to try again", http.StatusBadGateway)
 			return
 		}
