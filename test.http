@@ -1,0 +1,7 @@
+### Confirm
+POST http://localhost:8080/newsletter/confirm
+Content-Type: application/x-www-form-urlencoded
+
+token=6f62bd7c362953d8d993b0b4c0407cfa6e7ad069c4d70bb0cd6d4c8684ca2cb7
+
+
