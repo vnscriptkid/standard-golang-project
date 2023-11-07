@@ -13,24 +13,29 @@ import (
 	"time"
 
 	"github.com/go-chi/chi/v5"
+	"github.com/prometheus/client_golang/prometheus"
 	"go.uber.org/zap"
 )
 
 type Server struct {
-	address  string
-	database *storage.Database
-	Log      *zap.Logger
-	mux      chi.Router
-	queue    *messaging.Queue
-	server   *http.Server
+	address         string
+	database        *storage.Database
+	Log             *zap.Logger
+	metricsPassword string
+	metrics         *prometheus.Registry
+	mux             chi.Router
+	queue           *messaging.Queue
+	server          *http.Server
 }
 
 type Options struct {
-	Database *storage.Database
-	Host     string
-	Log      *zap.Logger
-	Port     int
-	Queue    *messaging.Queue
+	Database        *storage.Database
+	Host            string
+	Log             *zap.Logger
+	MetricsPassword string
+	Metrics         *prometheus.Registry
+	Port            int
+	Queue           *messaging.Queue
 }
 
 func New(opts Options) *Server {
@@ -38,14 +43,20 @@ func New(opts Options) *Server {
 		opts.Log = zap.NewNop()
 	}
 
+	if opts.Metrics == nil {
+		opts.Metrics = prometheus.NewRegistry()
+	}
+
 	address := net.JoinHostPort(opts.Host, strconv.Itoa(opts.Port))
 	mux := chi.NewMux()
 	return &Server{
-		address:  address,
-		database: opts.Database,
-		mux:      mux,
-		Log:      opts.Log,
-		queue:    opts.Queue,
+		address:         address,
+		database:        opts.Database,
+		mux:             mux,
+		Log:             opts.Log,
+		metricsPassword: opts.MetricsPassword,
+		metrics:         opts.Metrics,
+		queue:           opts.Queue,
 		server: &http.Server{
 			Addr:              address,
 			Handler:           mux,
@@ -59,10 +70,6 @@ func New(opts Options) *Server {
 
 // Start the Server by setting up routes and listening for HTTP requests on the given address.
 func (s *Server) Start() error {
-	if err := s.database.Connect(); err != nil {
-		return fmt.Errorf("error connecting to database: %w", err)
-	}
-
 	s.setupRoutes()
 
 	s.Log.Info("Starting on", zap.String("address", s.address))
