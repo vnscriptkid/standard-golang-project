@@ -13,9 +13,9 @@ func (s *Server) setupRoutes() {
 	handlers.Health(s.mux, s.database)
 
 	handlers.FrontPage(s.mux)
-	handlers.NewsletterSignup(s.mux, s.database, s.queue)
+	handlers.NewsletterSignup(s.mux, s.database, s.queue, s.Log)
 	handlers.NewsletterThanks(s.mux)
-	handlers.NewsletterConfirm(s.mux, s.database, s.queue)
+	handlers.NewsletterConfirm(s.mux, s.database, s.queue, s.Log)
 	handlers.NewsletterConfirmed(s.mux)
 
 	metricsAuth := middleware.BasicAuth("metrics", map[string]string{"prometheus": s.metricsPassword})
