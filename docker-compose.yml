@@ -26,6 +26,15 @@ services:
     volumes:
       - prometheus:/prometheus
       - ./prometheus/development.yml:/etc/prometheus/prometheus.yml
+      - ./prometheus/alerts.yml:/etc/prometheus/alerts.yml
+  alertmanager:
+    image: prom/alertmanager
+    container_name: salert
+    ports:
+      - 9093:9093
+    volumes:
+      - alertmanager:/alertmanager
+      - ./alertmanager/development.yml:/etc/alertmanager/alertmanager.yml
   grafana:
     image: grafana/grafana
     container_name: sgraf
@@ -56,4 +65,5 @@ services:
 volumes:
   postgres:
   prometheus:
+  alertmanager:
   grafana:
